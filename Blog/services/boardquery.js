@@ -15,3 +15,7 @@ function write(title, subtitle) {
 };
 
 exports.write = write;
+
+function boardlist(maxCount, page){
+
+};

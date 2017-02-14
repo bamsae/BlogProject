@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1 글쓰기
+
+    form(action='/board/write', method='post')
+        p 제목
+        input(type='text', name='input_title')
+        p 내용
+        textarea(name='input_subtitle')
+        p
+        input(type='submit', value='전송')

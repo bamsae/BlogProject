@@ -21,7 +21,7 @@ var sqlConnection = function sqlConnection(sql, values, next) {
         }
     });
 
-    connection.query(sql, values, function(err) {
+    connection.query(sql, values, function(err, results) {
 
         connection.end(); // close the connection
 

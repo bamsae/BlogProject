@@ -14,8 +14,6 @@ block content
             var re_id = /^[a-z0-9_-]{3,16}$/; // 아이디 검사식
             var re_pw = /^[a-z0-9_-]{6,18}$/; // 비밀번호 검사식
             var re_mail = /^([\w\.-]+)@([a-z\d\.-]+)\.([a-z\.]{2,6})$/; // 이메일 검사식
-            var re_url = /^(https?:\/\/)?([a-z\d\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?$/; // URL 검사식
-            var re_tel = /^[0-9]{8,11}$/; // 전화번호 검사식
 
             // 선택할 요소를 변수에 할당
             // 변수에 할당하지 않으면 매번 HTML 요소를 선택해야 하기 때문에 귀찮고 성능에도 좋지 않다
@@ -25,9 +23,7 @@ block content
                 form = $('.form'),
                 uid = $('#uid'),
                 upw = $('#upw'),
-                mail = $('#mail'),
-                url = $('#url'),
-                tel = $('#tel');
+                mail = $('#mail');
 
             // 선택한 form에 서밋 이벤트가 발생하면 실행한다
             // if (사용자 입력 값이 정규식 검사에 의해 참이 아니면) {포함한 코드를 실행}
@@ -48,14 +44,6 @@ block content
                 } else if (re_mail.test(mail.val()) != true) { // 이메일 검사
                     alert('[Email 입력 오류] 유효한 이메일 주소를 입력해 주세요.');
                     mail.focus();
-                    return false;
-                } else if (re_url.test(url.val()) != true) { // URL 검사
-                    alert('[Web 입력 오류] 유효한 웹 사이트 주소를 입력해 주세요.');
-                    url.focus();
-                    return false;
-                } else if (re_tel.test(tel.val()) != true) { // 전화번호 검사
-                    alert('[Tel 입력 오류] 유효한 전화번호를 입력해 주세요.');
-                    tel.focus();
                     return false;
                 }
             });

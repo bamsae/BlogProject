@@ -7,14 +7,19 @@ router.get('/', function(req, res){
 });
 
 router.post('/', function(req, res, next){
-    query.login(req.body.input_email, req.body.input_password, function(error, results){
+    var mail = req.body.input_email,
+        password = req.body.input_password;
+
+    query.login([mail, password], function(error, results){
         if(error) throw error;
 
-        if(results.length > 0) {
-
+        if(results.length == 1) {
+            req.session.user_id = mail;
+            req.session.name = results[0].name;
+            res.redirect('/board');
         }
         else {
-            res.send('<script type="text/javascript">alert("이메일 혹은 비밀번호가 맞지 않습니다."); location.href="/login"; </script>');
+            res.send('<script type="text/javascript">alert("이메일 혹은 비밀번호가 맞지 않습니다."); location.href = "/board"; </script>');
         }
     });
 });

@@ -1,12 +1,17 @@
 extends layout
 
-// maxcount, page, results
+// maxcount, page, results, user [email, name]
 block content
     script(type='text/javascript' src='/scripts/commons.js')
 
+    - if(user[0] == null) {
     button(onclick='movepage("/login")') 로그인
+    - } else {
+    p= '어서오세요 ' + user[1] + '님'
     button(onclick='movepage("/board/write")') 글쓰기
-    - if(results.length == 5) {
+    form(action='/logout' method='post')
+        button() 로그아웃
+    - } if(results.length == 5) {
     button(onclick='movepagewithnumber("/board/list/",' + page + "," + 1 + ')') 다음페이지 이동
     - } if (page != 1) {
     button(onclick='movepagewithnumber("/board/list/",' + page + "," + (-1) + ')') 이전페이지 이동

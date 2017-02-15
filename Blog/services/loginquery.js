@@ -1,12 +1,8 @@
 var mysql_query = require('../models/sqlConnection');
 
-function login(mail, password, values, next) {
+function login(values, next) {
 
-    var querymessage = 'select mail, password from user where mail='
-        + '"' + mail + '"'
-        + ' and '
-        + 'password= '
-        + '"' + password + '"';
+    var querymessage = 'select name from user where mail=? and password=?';
 
     if(arguments.length === 3)
     {
@@ -14,7 +10,7 @@ function login(mail, password, values, next) {
         values = null;
     }
 
-    mysql_query(querymessage, function(error, results) {
+    mysql_query(querymessage, values, function(error, results) {
         if(error) throw error;
         next.apply(this, arguments);
     });

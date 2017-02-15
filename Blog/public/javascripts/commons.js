@@ -17,5 +17,10 @@ function movepagewithnumber(name){
     location.href = result;
 }
 
+function alertmessage(message){
+    alert(message);
+}
+
 hw.addEventListener('click', movepage);
 hw.addEventListener('click', movepagewithnumber);
+hw.addEventListener('click', alertmessage);

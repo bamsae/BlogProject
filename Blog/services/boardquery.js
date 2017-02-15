@@ -24,7 +24,7 @@ function writinglist(maxCount, page, values, next) {
         + startID + ' and id <= '
         + destID + ';';
 
-    if(arguments.length == 3) {
+    if(arguments.length === 3) {
         next = values;
         values = null;
     }

@@ -7,11 +7,6 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/login.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/commons.js" afterPath="$PROJECT_DIR$/public/javascripts/commons.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/board.js" afterPath="$PROJECT_DIR$/routes/board.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/boardquery.js" afterPath="$PROJECT_DIR$/services/boardquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/board_main.jade" afterPath="$PROJECT_DIR$/views/board_main.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/board_write.jade" afterPath="$PROJECT_DIR$/views/board_write.jade" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -93,7 +88,7 @@
         <entry file="file://$PROJECT_DIR$/views/board_main.jade">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="21" column="7" lean-forward="false" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+              <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -478,7 +473,7 @@
       <workItem from="1486948068090" duration="20335000" />
       <workItem from="1487073494808" duration="780000" />
       <workItem from="1487121077762" duration="1856000" />
-      <workItem from="1487125190107" duration="10421000" />
+      <workItem from="1487125190107" duration="10646000" />
     </task>
     <task id="LOCAL-00001" summary="세번쨰 커밋">
       <created>1487074013255</created>
@@ -487,11 +482,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487074013255</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="development next page, before page (pagemove)&#10;and show word list.">
+      <created>1487140971574</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1487140971574</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33392000" />
+    <option name="totallyTimeSpent" value="33617000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -552,7 +554,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="세번쨰 커밋" />
-    <option name="LAST_COMMIT_MESSAGE" value="세번쨰 커밋" />
+    <MESSAGE value="development next page, before page (pagemove)&#10;and show word list." />
+    <option name="LAST_COMMIT_MESSAGE" value="development next page, before page (pagemove)&#10;and show word list." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -961,7 +964,7 @@
     <entry file="file://$PROJECT_DIR$/views/board_main.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="21" column="7" lean-forward="false" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+          <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
           <folding />
         </state>
       </provider>

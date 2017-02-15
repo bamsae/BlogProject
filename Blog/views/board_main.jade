@@ -1,6 +1,32 @@
 extends layout
 
+// maxcount, page, results
 block content
-    script(type='text/javascript' src='javascripts/commons.js')
+    script(type='text/javascript' src='/scripts/commons.js')
 
     button(onclick='movepage("/board/write")') 글쓰기
+    - if(results.length == 5) {
+    button(onclick='movepagewithnumber("/board/list/",' + page + "," + 1 + ')') 다음페이지 이동
+    - } if (page != 1) {
+    button(onclick='movepagewithnumber("/board/list/",' + page + "," + (-1) + ')') 이전페이지 이동
+    - }
+
+    ul
+        each data in results
+            li= data.id
+                ul
+                    p 글쓴이
+                    li= data.name
+                    p 제목
+                    li= data.title
+                    p 내용
+                    li= data.subtitle
+                    p 조회수
+                    li= data.hits
+                    p 작성시간
+                    li= data.writetime
+                    p 수정시간
+                    li= data.moditime
+                p
+
+

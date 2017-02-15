@@ -1,6 +1,8 @@
 extends layout
 
 block content
+    script(type='text/javascript' src='/scripts/commons.js')
+
     h1 글쓰기
 
     form(action='/board/write', method='post')
@@ -10,3 +12,5 @@ block content
         textarea(name='input_subtitle')
         p
         input(type='submit', value='전송')
+
+    button(onclick='movepage("/board")') 글 목록으로 돌아가기

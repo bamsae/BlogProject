@@ -1,0 +1,17 @@
+extends layout
+
+// results
+block content
+    script(type='text/javascript' src='/scripts/commons.js')
+
+    button(onclick='movepage("/board")') 글 목록으로 돌아가기
+
+    h1 글쓰기
+
+    form(action='/board/modify/' + results[0].id, method='post')
+        p 제목
+        input(type='text', name='input_title', value= results[0].title)
+        p 내용
+        textarea(name='input_subtitle')= results[0].subtitle
+        p
+        input(type='submit', value='전송')

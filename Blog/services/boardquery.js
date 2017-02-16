@@ -1,6 +1,6 @@
 var mysql_query = require('../models/sqlConnection');
 
-function write(values, res) {
+function post(values, res) {
     var queryMessage = 'insert into board (name, title, subtitle, hits) VALUES (?,?,?,?)';
 
     values.push(0);
@@ -12,9 +12,9 @@ function write(values, res) {
     });
 };
 
-exports.write = write;
+exports.post = post;
 
-function writinglist(values, next) {
+function postList(values, next) {
     values = [(values[1] - 1) * values[0], ((values[1] - 1) * values[0]) + values[0]];
 
     var queryMessage = 'select * from board where id > ? and id <= ?';
@@ -31,9 +31,9 @@ function writinglist(values, next) {
     });
 };
 
-exports.writinglist = writinglist;
+exports.postList = postList;
 
-function writinglistcount(next) {
+function postlistcount(next) {
     var queryMessage = 'select count(*) cnt from board';
 
     mysql_query(queryMessage, function(error, results){
@@ -42,7 +42,7 @@ function writinglistcount(next) {
     });
 };
 
-exports.writinglistcount = writinglistcount;
+exports.postlistcount = postlistcount;
 
 function entry(values, next) {
 

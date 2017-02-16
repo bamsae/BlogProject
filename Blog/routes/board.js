@@ -37,12 +37,12 @@ router.get('/list/:page', function(req, res, next){
     var page = req.params.page;
     var count = 0;
 
-    query.writinglistcount(function(error, results){
+    query.postlistcount(function(error, results){
         if(error) throw error;
 
         count = results[0].cnt;
 
-        query.writinglist([maxcount, page], function(error, results){
+        query.postList([maxcount, page], function(error, results){
             if(error) throw error;
 
             var user = [req.session.user_id, req.session.name];
@@ -51,16 +51,30 @@ router.get('/list/:page', function(req, res, next){
     });
 });
 
-router.get('/modify/:id', function(req, res, next){
+router.get('/entry/:id', function(req, res, next){
     query.entry(req.params.id, function(error, results){
         if(error) throw error;
 
-        res.render('board_modify', { results: results });
+        var user = [req.session.user_id, req.session.name];
+        res.render('board_entry', { results: results, user: user });
     });
 });
 
+router.get('/modify/:id', function(req, res, next){
+    if(req.session.user_id == null) {
+        res.redirect('/login');
+    } else {
+        query.entry(req.params.id, function (error, results) {
+            if (error) throw error;
+
+            res.render('board_modify', {results: results});
+        });
+    }
+});
+
 router.post('/modify/:id', function(req, res, next){
-    query.modify([ { title: req.body.input_title, subtitle: req.body.input_subtitle, moditime: getTimeStamp() }, req.params.id], res);
+    if(req.session.user_id != null)
+        query.modify([ { title: req.body.input_title, subtitle: req.body.input_subtitle, moditime: getTimeStamp() }, req.params.id], res);
 });
 
 router.get('/post', function(req, res, next){
@@ -71,16 +85,8 @@ router.get('/post', function(req, res, next){
 });
 
 router.post('/post', function(req, res, next){
-    query.write([req.session.name, req.body.input_title, req.body.input_subtitle], res);
-});
-
-router.get('/entry/:id', function(req, res, next){
-    query.entry(req.params.id, function(error, results){
-        if(error) throw error;
-
-        var user = [req.session.user_id, req.session.name];
-        res.render('board_entry', { results: results, user: user });
-    });
+    if(req.session.user_id != null)
+        query.post([req.session.name, req.body.input_title, req.body.input_subtitle], res);
 });
 
 module.exports = router;

@@ -19,7 +19,7 @@ function writinglist(values, next) {
 
     var queryMessage = 'select * from board where id > ? and id <= ?';
 
-    if(arguments.length === 3) {
+    if(arguments.length === 1) {
         next = values;
         values = null;
     }
@@ -33,13 +33,8 @@ function writinglist(values, next) {
 
 exports.writinglist = writinglist;
 
-function writinglistcount(values, next) {
-    var queryMessage = 'select count(*) board;';
-
-    if(arguments.length === 1) {
-        next = values;
-        values = null;
-    }
+function writinglistcount(next) {
+    var queryMessage = 'select count(*) cnt from board';
 
     mysql_query(queryMessage, function(error, results){
         if(error) throw error;
@@ -47,4 +42,36 @@ function writinglistcount(values, next) {
     });
 };
 
-exports.writinglistcount = writinglistcount
+exports.writinglistcount = writinglistcount;
+
+function entry(values, next) {
+
+    var querymessage = 'select * from board where id=?';
+
+    if(arguments.length === 1)
+    {
+        next = values;
+        values = null;
+    }
+
+    mysql_query(querymessage, values, function(error, results) {
+        if(error) throw error;
+        next.apply(this, arguments);
+    });
+}
+
+exports.entry = entry;
+
+function modify(values, res) {
+    var queryMessage = 'update board set ? where id=?';
+
+    values.push(0);
+
+    mysql_query(queryMessage, values, function(error){
+        if(error) throw error;
+
+        res.redirect('/board/entry/' + values[1]);
+    });
+};
+
+exports.modify = modify;

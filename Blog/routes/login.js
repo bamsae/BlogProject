@@ -19,7 +19,7 @@ router.post('/', function(req, res, next){
             res.redirect('/board');
         }
         else {
-            res.send('<script type="text/javascript">alert("이메일 혹은 비밀번호가 맞지 않습니다."); location.href = "/board"; </script>');
+            res.send('<script type="text/javascript">alert("이메일 혹은 비밀번호가 맞지 않습니다."); location.href = "/board/post"; </script>');
         }
     });
 });

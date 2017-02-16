@@ -4,7 +4,7 @@ function login(values, next) {
 
     var querymessage = 'select name from user where mail=? and password=?';
 
-    if(arguments.length === 3)
+    if(arguments.length === 1)
     {
         next = values;
         values = null;

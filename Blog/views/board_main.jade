@@ -1,6 +1,6 @@
 extends layout
 
-// maxcount, page, results, user [email, name]
+// maxcount, page, results, user [email, name], count
 block content
     script(type='text/javascript' src='/scripts/commons.js')
 
@@ -8,10 +8,10 @@ block content
     button(onclick='movepage("/login")') 로그인
     - } else {
     p= '어서오세요 ' + user[1] + '님'
-    button(onclick='movepage("/board/write")') 글쓰기
+    button(onclick='movepage("/board/post")') 글쓰기
     form(action='/logout' method='post')
         button() 로그아웃
-    - } if(results.length == 5) {
+    - } if(page != count/results.length) {
     button(onclick='movepagewithnumber("/board/list/",' + page + "," + 1 + ')') 다음페이지 이동
     - } if (page != 1) {
     button(onclick='movepagewithnumber("/board/list/",' + page + "," + (-1) + ')') 이전페이지 이동
@@ -19,20 +19,13 @@ block content
 
     ul
         each data in results
-            li= data.id
+            li
                 ul
-                    p 글쓴이
+                    li
+                        input(type='button' class='astext' value=data.title onclick='movepagewithnumber("/board/entry/",' + data.id + ')')
+                    p
                     li= data.name
-                    p 제목
-                    li= data.title
-                    p 내용
-                    li= data.subtitle
-                    p 조회수
-                    li= data.hits
-                    p 작성시간
-                    li= data.writetime
-                    p 수정시간
-                    li= data.moditime
+                    p
                 p
 
 

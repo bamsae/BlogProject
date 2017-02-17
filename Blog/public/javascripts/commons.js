@@ -22,6 +22,12 @@ function alertmessage(message){
     alert(message);
 }
 
+function popupWindow(page, title, rect) {
+    // 팝업을 띄우기, width, height, 스크롤바, 툴바, 메뉴바를 모두 숨기는 경우
+    return window.open(page, title, 'width=' + rect[0] + ', ' + 'height=' + rect[1] + ',' + 'scrollbars= 0, toolbar=0, menubar=no');
+}
+
 hw.addEventListener('click', movepage);
 hw.addEventListener('click', movepagewithnumber);
 hw.addEventListener('click', alertmessage);
+hw.addEventListener('click', popupWindow);

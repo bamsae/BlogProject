@@ -1,5 +1,13 @@
 # Blog Project
 
+How to use this project?
+ - Go this project wiki : https://github.com/Vallista/BlogProject/wiki
+
+This project has a problem
+ - please post issues tracking : https://github.com/Vallista/BlogProject/issues
+ 
+ thank you for read!
+ 
 ## Develop List
  - account join
  - login, logout
@@ -18,5 +26,5 @@
  - db part : mysql
 
 ## ETC
- - blog : vallista.tistory.com
+ - blog : http://vallista.tistory.com
  - mail : vallista@tistory.com

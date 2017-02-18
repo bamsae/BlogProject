@@ -45,8 +45,16 @@ router.get('/list/:page', function(req, res, next){
         query.postList([maxcount, page], function(error, results){
             if(error) throw error;
 
+            var nextFlag = (page < count / maxcount);
+            var beforeFlag = (page != 1);
+            var zeroFlag = (count != 0);
+
+            console.log(nextFlag);
+            console.log(beforeFlag);
+            console.log(zeroFlag);
+
             var user = [req.session.user_id, req.session.name];
-            res.render('board_main', { maxCount: maxcount, page: page, results: results, user: user, count: count });
+            res.render('board_main', { page: page, results: results, user: user, nextFlag: nextFlag, beforeFlag: beforeFlag, zeroFlag: zeroFlag});
         });
     });
 });
@@ -82,6 +90,13 @@ router.get('/post', function(req, res, next){
         res.redirect('/login');
     else
         res.render('board_post');
+});
+
+router.post('/delete/:id', function(req, res, next){
+    var id = req.params.id;
+
+    if(req.session.user_id != null)
+        query.deletePost([id], res);
 });
 
 router.post('/post', function(req, res, next){

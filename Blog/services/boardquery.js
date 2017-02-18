@@ -15,9 +15,9 @@ function post(values, res) {
 exports.post = post;
 
 function postList(values, next) {
-    values = [(values[1] - 1) * values[0], ((values[1] - 1) * values[0]) + values[0]];
+    values = [(values[1] - 1) * values[0], 5];
 
-    var queryMessage = 'select * from board where id > ? and id <= ?';
+    var queryMessage = 'select * from board limit ?, ?';
 
     if(arguments.length === 1) {
         next = values;
@@ -75,3 +75,15 @@ function modify(values, res) {
 };
 
 exports.modify = modify;
+
+function deletePost(values, res) {
+    var deleteMessage = 'delete from board where id=?';
+
+    mysql_query(deleteMessage, values, function(error){
+        if(error) throw error;
+
+        res.redirect('/board');
+    });
+};
+
+exports.deletePost = deletePost;

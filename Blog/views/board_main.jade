@@ -1,6 +1,6 @@
 extends layout
 
-// maxcount, page, results, user [email, name], count
+// results, user [email, name], nextFlag, beforeFlag, zeroFlag
 block content
     script(type='text/javascript' src='/scripts/commons.js')
 
@@ -12,10 +12,10 @@ block content
     form(action='/logout' method='post')
         button() 로그아웃
     - }
-    - if(count != 0) {
-        - if(page != count/results.length) {
+    - if(zeroFlag == true) {
+        - if(nextFlag == true) {
         button(onclick='movepagewithnumber("/board/list/",' + page + "," + 1 + ')') 다음페이지 이동
-        - } if (page != 1) {
+        - } if (beforeFlag == true) {
         button(onclick='movepagewithnumber("/board/list/",' + page + "," + (-1) + ')') 이전페이지 이동
         - }
     - }

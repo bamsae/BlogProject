@@ -6,6 +6,8 @@ block content
 
     - if(user[0] != null) {
     button(onclick='movepagewithnumber("/board/modify/",' + results[0].id + ')') 글 수정
+    form(action='/board/delete/' + results[0].id, method='post')
+        button() 글 삭제
     - }
 
     button(onclick='movepage("/board")') 글 목록으로 돌아가기

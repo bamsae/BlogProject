@@ -12,14 +12,31 @@ router.get('/', function(req, res){
 
 router.get('/overlap', function(req, res){
     if(req.session.user_id == null) {
-        res.render('join_overlap_mail');
+        var tempmail = req.session.tempmail;
+        req.session.tempmail = null;
+
+        if(tempmail != null){
+            res.render('join_overlap_mail', {tempmail: tempmail});
+        } else {
+            res.render('join_overlap_mail', {tempmail: null});
+        }
     } else {
         res.redirect('/board');
     }
 });
 
 router.post('/', function(req, res){
+    var name = req.body.input_name;
+    var mail = req.body.input_email;
+    var pass = req.body.input_password;
 
+    var arr = [name, pass, mail];
+
+    query.createUser(arr, function(error){
+        if(error) throw error;
+
+        res.send('<script type="text/javascript">alert("회원 가입을 축하드립니다!"); location.href = "/login"; </script>');
+    })
 });
 
 router.post('/overlap', function(req, res){
@@ -30,7 +47,8 @@ router.post('/overlap', function(req, res){
        if(error) throw error;
 
        if(results[0].cnt === 0) {
-            res.send('<script type="text/javascript">alert("사용할 수 있는 아이디 입니다"); location.href = "/join/overlap";</script>');
+           req.session.tempmail = mail;
+           res.send('<script type="text/javascript">alert("사용 가능한 아이디 입니다."); location.href = "/join/overlap"; </script>');
        } else {
             res.send('<script type="text/javascript">alert("이미 있는 아이디 입니다 다른 아이디를 사용해주세요"); location.href = "/join/overlap"; </script>');
        }

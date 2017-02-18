@@ -2,7 +2,7 @@
   "db": {
     "host"     : "localhost",
     "user"     : "root",
-    "password" : "!+zmfltm950714",
+    "password" : "root",
     "database" : "blog"
   }
 }

@@ -23,8 +23,9 @@ function alertmessage(message){
 }
 
 function popupWindow(page, title, rect) {
+    var data = window.open(page, title, 'width=' + rect[0] + ', ' + 'height=' + rect[1] + ',' + 'scrollbars= 0, toolbar=0, menubar=no');
     // 팝업을 띄우기, width, height, 스크롤바, 툴바, 메뉴바를 모두 숨기는 경우
-    return window.open(page, title, 'width=' + rect[0] + ', ' + 'height=' + rect[1] + ',' + 'scrollbars= 0, toolbar=0, menubar=no');
+    return data;
 }
 
 hw.addEventListener('click', movepage);

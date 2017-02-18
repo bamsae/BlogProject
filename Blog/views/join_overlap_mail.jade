@@ -100,25 +100,26 @@ block content
         });
 
 
-
-
-
-
-
-
-    script.
-        function select_item(item) {
-            data.value = item;
-            top.close();
-            return false;
-        }
-
     h1 중복확인
     p
     p
     form(action = '/join/overlap' class= 'form' method = 'post')
         p 중복 확인 할 이메일
-        input(type = 'text' name = 'input_email' id = 'mail' value = '@')
+        input(type = 'text' name = 'input_email' id = 'mail' value=tempmail)
         strong
         p
-        button(onclick='/join/overlap') 중복확인
+        button() 중복확인
+
+    - if (tempmail != null) {
+        button(onclick='useMail();') 사용하기
+    - }
+
+    script.
+        function useMail() {
+            var mail = window.opener.document.getElementById('mail');
+            var temp = document.getElementById('mail').value;
+
+            mail.value = temp;
+
+            window.close();
+        }

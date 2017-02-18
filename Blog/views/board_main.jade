@@ -11,10 +11,13 @@ block content
     button(onclick='movepage("/board/post")') 글쓰기
     form(action='/logout' method='post')
         button() 로그아웃
-    - } if(page != count/results.length) {
-    button(onclick='movepagewithnumber("/board/list/",' + page + "," + 1 + ')') 다음페이지 이동
-    - } if (page != 1) {
-    button(onclick='movepagewithnumber("/board/list/",' + page + "," + (-1) + ')') 이전페이지 이동
+    - }
+    - if(count != 0) {
+        - if(page != count/results.length) {
+        button(onclick='movepagewithnumber("/board/list/",' + page + "," + 1 + ')') 다음페이지 이동
+        - } if (page != 1) {
+        button(onclick='movepagewithnumber("/board/list/",' + page + "," + (-1) + ')') 이전페이지 이동
+        - }
     - }
 
     ul

@@ -23,7 +23,8 @@ block content
                 form = $('.form'),
                 uid = $('#uid'),
                 upw = $('#upw'),
-                mail = $('#mail');
+                mail = $('#mail'),
+                overlap = $('#overlap');
 
             // 선택한 form에 서밋 이벤트가 발생하면 실행한다
             // if (사용자 입력 값이 정규식 검사에 의해 참이 아니면) {포함한 코드를 실행}
@@ -34,16 +35,18 @@ block content
             // 사용자 입력 값이 참이 아니면 form 서밋을 중단한다
             form.submit(function () {
                 if (re_id.test(uid.val()) != true) { // 아이디 검사
-                    alert('[ID 입력 오류] 유효한 ID를 입력해 주세요.');
+                    alert('유효한 닉네임을 입력해 주세요.');
                     uid.focus();
                     return false;
                 } else if (re_pw.test(upw.val()) != true) { // 비밀번호 검사
-                    alert('[PW 입력 오류] 유효한 PW를 입력해 주세요.');
+                    alert('유효한 PW를 입력해 주세요.');
                     upw.focus();
                     return false;
-                } else if (re_mail.test(mail.val()) != true) { // 이메일 검사
-                    alert('[Email 입력 오류] 유효한 이메일 주소를 입력해 주세요.');
-                    mail.focus();
+                }
+
+                if (mail.val() == ""){
+                    alert('중복확인을 해주세요.');
+                    overlap.focus();
                     return false;
                 }
             });
@@ -52,26 +55,19 @@ block content
             // #uid, #upw 다음 순서에 경고 텍스트 출력을 위한 빈 strong 요소를 추가한다
             // 무턱대고 자바스크립트를 이용해서 HTML 삽입하는 것은 좋지 않은 버릇
             // 그러나 이 경우는 strong 요소가 없어도 누구나 form 핵심 기능을 이용할 수 있으니까 문제 없다
-            $('#mail, #upw').after('<strong></strong>');
+            $('#uid, #upw').after('<strong></strong>');
 
             // #uid 인풋에서 onkeyup 이벤트가 발생하면
-            mail.keyup(function () {
+            uid.keyup(function () {
                 var s = $(this).next('strong'); // strong 요소를 변수에 할당
-                //if (mail.val().length == 0) { // 입력 값이 없을 때
-                //    s.text(''); // strong 요소에 포함된 문자 지움
-                //} else if (mail.val().length < 3) { // 입력 값이 3보다 작을 때
-                //    s.text('너무 짧아요.'); // strong 요소에 문자 출력
-                //} else if (mail.val().length > 16) { // 입력 값이 16보다 클 때
-                //    s.text('너무 길어요.'); // strong 요소에 문자 출력
-                //} else { // 입력 값이 3 이상 16 이하일 때
-                //    s.text('적당해요.'); // strong 요소에 문자 출력
-                //}
-                if (mail.val().length == 0) {
-                    s.text('입력 해주세요');
-                } else if(re_mail.test(mail.val()) != true)
-                    s.text('올바른 형식의 이메일을 써주세요');
-                else {
-                    s.text('올바른 형식의 이메일입니다');
+                if (uid.val().length == 0) { // 입력 값이 없을 때
+                    s.text(''); // strong 요소에 포함된 문자 지움
+                } else if (uid.val().length < 6) { // 입력 값이 6보다 작을 때
+                    s.text('너무 짧아요.'); // strong 요소에 문자 출력
+                } else if (uid.val().length > 18) { // 입력 값이 18보다 클 때
+                    s.text('너무 길어요.'); // strong 요소에 문자 출력
+                } else { // 입력 값이 6 이상 18 이하일 때
+                    s.text('적당해요.'); // strong 요소에 문자 출력
                 }
             });
 
@@ -93,8 +89,7 @@ block content
 
     script.
         function popupAfterEvent() {
-            data = popupWindow('/join/overlap', 'data', [600,300]);
-            //document.getElementById('input_email')
+            data = popupWindow('/join/overlap', document.getElementById('mail').value, [600,300]);
         }
 
     button(onclick='movepage("/login")') 로그인으로 되돌아가기
@@ -104,12 +99,13 @@ block content
     p
     form(action = '/join' class= 'form' method = 'post')
         p 사용할 이메일
-        input(type = 'text' name = 'input_email' id='mail')
-        button(type='button' onclick='popupAfterEvent()') 중복확인
+        input(type = 'text' name = 'input_email' id='mail' readonly="true")
+        button(type='button' onclick='popupAfterEvent()' id='overlap') 중복확인
         p 비밀번호
         input(type = 'password' name = 'input_password' id='upw')
         strong
         p 닉네임
-        input(type = 'password' name = 'input_name')
+        input(type = 'text' name = 'input_name', id='uid')
+        strong
         p
         button(type= 'submit') 회원가입하기

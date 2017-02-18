@@ -49,10 +49,6 @@ router.get('/list/:page', function(req, res, next){
             var beforeFlag = (page != 1);
             var zeroFlag = (count != 0);
 
-            console.log(nextFlag);
-            console.log(beforeFlag);
-            console.log(zeroFlag);
-
             var user = [req.session.user_id, req.session.name];
             res.render('board_main', { page: page, results: results, user: user, nextFlag: nextFlag, beforeFlag: beforeFlag, zeroFlag: zeroFlag});
         });

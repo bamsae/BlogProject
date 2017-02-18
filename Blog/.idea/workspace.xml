@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c55722b6-1d62-4797-b335-b3409cd6484c" name="Default" comment="">
+    <list default="true" id="c55722b6-1d62-4797-b335-b3409cd6484c" name="Default" comment="fix next, before button bug,&#10;add delete button">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/board.js" afterPath="$PROJECT_DIR$/routes/board.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/boardquery.js" afterPath="$PROJECT_DIR$/services/boardquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/board_entry.jade" afterPath="$PROJECT_DIR$/views/board_entry.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/board_main.jade" afterPath="$PROJECT_DIR$/views/board_main.jade" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,8 +34,8 @@
       <file leaf-file-name="board.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/board.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="51" column="34" lean-forward="true" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+            <state relative-caret-position="315">
+              <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding>
                 <element signature="n#!!block;n#getTimeStamp#0" expanded="false" />
                 <element signature="n#!!block;n#leadingZeros#0" expanded="false" />
@@ -493,7 +490,7 @@
       <workItem from="1487209954415" duration="15400000" />
       <workItem from="1487251562589" duration="17487000" />
       <workItem from="1487337937389" duration="4000" />
-      <workItem from="1487393343155" duration="18666000" />
+      <workItem from="1487393343155" duration="18722000" />
     </task>
     <task id="LOCAL-00001" summary="세번쨰 커밋">
       <created>1487074013255</created>
@@ -572,11 +569,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487409578740</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fix next, before button bug,&#10;add delete button">
+      <created>1487415301379</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1487415301379</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101205000" />
+    <option name="totallyTimeSpent" value="101261000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -648,7 +652,8 @@
     <MESSAGE value="destroy mysql folder" />
     <MESSAGE value="commit join" />
     <MESSAGE value="development join access" />
-    <option name="LAST_COMMIT_MESSAGE" value="development join access" />
+    <MESSAGE value="fix next, before button bug,&#10;add delete button" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix next, before button bug,&#10;add delete button" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -982,8 +987,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/board.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="51" column="34" lean-forward="true" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+        <state relative-caret-position="315">
+          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#getTimeStamp#0" expanded="false" />
             <element signature="n#!!block;n#leadingZeros#0" expanded="false" />

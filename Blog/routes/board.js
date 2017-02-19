@@ -88,16 +88,20 @@ router.get('/post', function(req, res, next){
         res.render('board_post');
 });
 
+router.post('/post', function(req, res, next){
+    if(req.session.user_id != null)
+        query.post([req.session.name, req.body.input_title, req.body.input_subtitle], res);
+});
+
+router.post('/image/:filename', function(req, res, next) {
+    query.imagePost(req, res);
+});
+
 router.post('/delete/:id', function(req, res, next){
     var id = req.params.id;
 
     if(req.session.user_id != null)
         query.deletePost([id], res);
-});
-
-router.post('/post', function(req, res, next){
-    if(req.session.user_id != null)
-        query.post([req.session.name, req.body.input_title, req.body.input_subtitle], res);
 });
 
 module.exports = router;

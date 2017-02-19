@@ -4,5 +4,9 @@
     "user"     : "root",
     "password" : "root",
     "database" : "blog"
+  },
+
+  "image": {
+    "path"     : "public/images"
   }
 }

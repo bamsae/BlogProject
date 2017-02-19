@@ -1,4 +1,5 @@
 var mysql_query = require('../models/sqlConnection');
+var image_load = require('../models/imageLoad');
 
 function post(values, res) {
     var queryMessage = 'insert into board (name, title, subtitle, hits) VALUES (?,?,?,?)';
@@ -13,6 +14,16 @@ function post(values, res) {
 };
 
 exports.post = post;
+
+function imagePost(req, res){
+    image_load(req, res).then(function (file) {
+        res.json(file);
+    }, function (err) {
+        res.send(500, err);
+    });
+}
+
+exports.imagePost = imagePost;
 
 function postList(values, next) {
     values = [(values[1] - 1) * values[0], 5];

@@ -4,7 +4,7 @@ var mysql   = require('mysql'),
 
 /*
  * @sqlConnection
- * Creates the connection, makes the query and close it to avoid concurrency conflicts.
+ * Cr'eates the connection, makes the query and close it to avoid concurrency conflicts.
  */
 var sqlConnection = function sqlConnection(sql, values, next) {
 

@@ -8,7 +8,7 @@ var config = require('../config/config'),
  * this function is image save in server
  */
 
-var imageLoad = function imageLoad(req, res) {
+var imageLoad = function imageLoad(fileTag, req, res) {
 
     // deferred 객체 생성
     var deferred = Q.defer();
@@ -22,7 +22,7 @@ var imageLoad = function imageLoad(req, res) {
         filename: function (req, file, cb) {
             console.log(req.body.file);
             file.uploadedFile = {
-                name: req.body.file.split('.')[0],
+                name: file.originalname.split('.')[0],
                 ext: file.mimetype.split('/')[1]
             };
             console.log(file.uploadedFile);
@@ -30,14 +30,9 @@ var imageLoad = function imageLoad(req, res) {
         }
     });
 
-    //var upload = multer({ storage: storage }).single('file');
-    var upload = multer({storage: storage   }).single('file');
+    var upload = multer({storage: storage}).single(fileTag);
 
-    console.log(upload);
-
-    // console.log(upload);
     upload(req, res, function (err) {
-        // console.log(req.file);
         // 요청 성공시 deferred.resolve로 메시지 전달, 아니면 reject로 실패시 메시지 전달
         if (err) deferred.reject();
         else deferred.resolve(req.file);

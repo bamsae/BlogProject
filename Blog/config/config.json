@@ -7,6 +7,6 @@
   },
 
   "image": {
-    "path"     : "public/images/"
+    "path"     : "./public/images/"
   }
 }

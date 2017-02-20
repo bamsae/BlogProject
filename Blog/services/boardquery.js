@@ -27,9 +27,9 @@ function post(values, next) {
 
 exports.post = post;
 
-function imagePost(req, res, next){
-    image_load(req, res).then(function (file) {
-        res.json(file);
+function imagePost(fileTag, req, res, next){
+    image_load(fileTag, req, res).then(function (file) {
+        res.redirect('/board');
     }, function (err) {
         res.send(500, err);
     });

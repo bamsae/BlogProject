@@ -93,13 +93,13 @@ router.post('/post', function(req, res, next){
         if(req.body.file == '')
             req.body.file = null;
 
-        query.post(['VallistA', req.body.title, req.body.input_subtitle, req.body.file], function (error, results){
+        query.post([req.session.name, req.body.title, req.body.subtitle, req.body.file], function (error, results){
             if(error) throw error;
 
             if(req.body.file == null)
                 res.redirect('/board');
             else
-                query.imagePost(req, res);
+                query.imagePost('file', req, res);
         });
     // }
 });

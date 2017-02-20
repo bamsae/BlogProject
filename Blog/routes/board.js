@@ -89,19 +89,32 @@ router.get('/post', function(req, res, next){
 });
 
 router.post('/post', function(req, res, next){
-    if(req.session.user_id != null)
-        query.post([req.session.name, req.body.input_title, req.body.input_subtitle], res);
+    // if(req.session.user_id != null){
+        if(req.body.file == '')
+            req.body.file = null;
+
+        query.post(['VallistA', req.body.title, req.body.input_subtitle, req.body.file], function (error, results){
+            if(error) throw error;
+
+            if(req.body.file == null)
+                res.redirect('/board');
+            else
+                query.imagePost(req, res);
+        });
+    // }
 });
 
-router.post('/image/:filename', function(req, res, next) {
-    query.imagePost(req, res);
-});
+
 
 router.post('/delete/:id', function(req, res, next){
     var id = req.params.id;
 
     if(req.session.user_id != null)
         query.deletePost([id], res);
+});
+
+router.post('/deleteAll', function(req, res, next){
+    query.deleteAllPost(null, res);
 });
 
 module.exports = router;

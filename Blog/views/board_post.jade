@@ -8,9 +8,11 @@ block content
 
     h1 글쓰기
 
-    form(action='/board/post', method='post')
+    form(name='', action='/board/post', enctype="multipart/form-data", method='post')
         p 제목
-        input(type='text', name='input_title')
+        input(type='text', name='title', placeholder="title")
+        p 파일
+        input(type='file', name='file')
         p 내용
         textarea(name='input_subtitle')
         p

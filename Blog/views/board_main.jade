@@ -4,6 +4,9 @@ extends layout
 block content
     script(type='text/javascript' src='/scripts/commons.js')
 
+    form(action='/board/deleteAll', method='post')
+        button() 전체 글 삭제
+        
     - if(user[0] == null) {
     button(onclick='movepage("/login")') 로그인
     - } else {

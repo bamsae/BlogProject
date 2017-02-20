@@ -1,21 +1,33 @@
 var mysql_query = require('../models/sqlConnection');
 var image_load = require('../models/imageLoad');
 
-function post(values, res) {
-    var queryMessage = 'insert into board (name, title, subtitle, hits) VALUES (?,?,?,?)';
+function post(values, next) {
+    var queryMessage = 'insert into board (name, title, subtitle, files, hits) VALUES (?,?,?,?,?)';
 
-    values.push(0);
+    if(values.length == 3) {
+        values.push(null);
+        values.push(0);
+    } else {
+        values.push(0);
+    }
 
-    mysql_query(queryMessage, values, function(error){
+    if(arguments.length == 1) {
+        next = values;
+        values = null;
+    }
+
+    console.log(values);
+
+    mysql_query(queryMessage, values, function(error, results){
         if(error) throw error;
 
-        res.redirect('/board');
+        next.apply(this, arguments);
     });
 };
 
 exports.post = post;
 
-function imagePost(req, res){
+function imagePost(req, res, next){
     image_load(req, res).then(function (file) {
         res.json(file);
     }, function (err) {
@@ -98,3 +110,15 @@ function deletePost(values, res) {
 };
 
 exports.deletePost = deletePost;
+
+function deleteAllPost(values, res) {
+    var queryMessage = 'delete from board';
+
+    mysql_query(queryMessage, values, function(error){
+        if(error) throw error;
+
+        res.redirect('/board');
+    });
+};
+
+exports.deleteAllPost = deleteAllPost;

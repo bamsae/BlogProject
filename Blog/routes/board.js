@@ -88,23 +88,10 @@ router.get('/post', function(req, res, next){
         res.render('board_post');
 });
 
-router.post('/post', function(req, res, next){
-    // if(req.session.user_id != null){
-        if(req.body.file == '')
-            req.body.file = null;
-
-        query.post([req.session.name, req.body.title, req.body.subtitle, req.body.file], function (error, results){
-            if(error) throw error;
-
-            if(req.body.file == null)
-                res.redirect('/board');
-            else
-                query.imagePost('file', req, res);
-        });
-    // }
+router.post('/post', function(req, res, next) {
+    if(req.session.user_id != null)
+        query.post(req, res);
 });
-
-
 
 router.post('/delete/:id', function(req, res, next){
     var id = req.params.id;

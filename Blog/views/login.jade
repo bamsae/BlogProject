@@ -81,15 +81,6 @@ block content
                     s.text('적당해요.'); // strong 요소에 문자 출력
                 }
             });
-
-            // #tel 인풋에 onkeydown 이벤트가 발생하면
-            // 하이픈(-) 키가 눌렸는지 확인
-            // 하이픈(-) 키가 눌렸다면 입력 중단
-            tel.keydown(function () {
-                if (event.keyCode == 109 || event.keyCode == 189) {
-                    return false;
-                }
-            });
         });
 
 

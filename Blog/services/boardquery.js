@@ -1,7 +1,10 @@
 var mysql_query = require('../models/sqlConnection');
-var image_load = require('../models/imageLoad');
+var multiparty = require('multiparty');
+var fs = require('fs');
+var upload = require('../models/imageLoad');
+var Q = require('q');
 
-function post(values, next) {
+function post_query(values, next) {
     var queryMessage = 'insert into board (name, title, subtitle, files, hits) VALUES (?,?,?,?,?)';
 
     if(values.length == 3) {
@@ -25,17 +28,36 @@ function post(values, next) {
     });
 };
 
-exports.post = post;
+function post(req, res, next){
 
-function imagePost(fileTag, req, res, next){
-    image_load(fileTag, req, res).then(function (file) {
-        res.redirect('/board');
-    }, function (err) {
+    upload(req, res).then(function(data) {
+        if(data.files.length == 0) {
+            post_query([req.session.name , data.fields[0].value, data.fields[1].value], function(err, results){
+                if(err) throw err;
+                res.redirect('/board');
+            });
+        } else {
+            var filenameList = '';
+
+            for(var i = 0; i < data.files.length; ) {
+
+                filenameList += data.files[0];
+                i++;
+                if(i < data.files.length) filenameList += '/';
+            }
+
+            post_query([req.session.name , data.fields[0].value, data.fields[1].value, filenameList], function(err, results){
+                if(err) throw err;
+                res.redirect('/board');
+            });
+        }
+
+    }, function(err){
         res.send(500, err);
     });
-}
+};
 
-exports.imagePost = imagePost;
+exports.post = post;
 
 function postList(values, next) {
     values = [(values[1] - 1) * values[0], 5];

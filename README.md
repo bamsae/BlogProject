@@ -15,7 +15,9 @@ This project has a problem
  - post list view
  - move page
  - validation 
-
+ 
+ - 2/21 image upload
+ 
 ## Tools
 - Webstorm 2016-03
 - mac os

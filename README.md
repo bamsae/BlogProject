@@ -16,6 +16,7 @@ This project has a problem
  - move page
  - validation 
  - 2/21 image upload
+ - 2/22 image viewer
  
 ## Tools
 - Webstorm 2016-03

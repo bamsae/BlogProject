@@ -41,7 +41,7 @@ function post(req, res, next){
 
             for(var i = 0; i < data.files.length; ) {
 
-                filenameList += data.files[0];
+                filenameList += data.files[i];
                 i++;
                 if(i < data.files.length) filenameList += '/';
             }

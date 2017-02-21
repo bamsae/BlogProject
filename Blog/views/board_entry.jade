@@ -17,3 +17,11 @@ block content
     p= results[0].subtitle
     p= results[0].writetime
     p= results[0].moditime
+
+    - if(results[0].files != undefined) {
+        - if(results[0].files.split('/').length != 0) {
+            - for(var i = 0; i < results[0].files.split('/').length; i++) {
+                img(src="/images/" + results[0].files.split('/')[i], alt= results[0].files.split('/')[i])
+            -}
+        - }
+    - }

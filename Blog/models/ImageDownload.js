@@ -4,7 +4,7 @@ var config = require('../config/config'),
     gm = require('gm');
 
 var imageDownload = function imageDownload(filename) {
-    gm('image.jpg')
+    gm('123.png')
         .thumb(400, 400, imagePath + filename, function(err) {
             if(err) throw err;
             else console.log('done - thumb');

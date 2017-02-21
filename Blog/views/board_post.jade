@@ -3,6 +3,30 @@ extends layout
 // results
 block content
     script(type='text/javascript' src='/scripts/commons.js')
+    script.
+        //첨부파일 추가
+        var rowIndex = 1;
+
+        function addFile(form){
+            if(rowIndex > 4) return false;
+
+            rowIndex++;
+            var getTable = document.getElementById("insertTable");
+        var oCurrentRow = getTable.insertRow(getTable.rows.length);
+            var oCurrentCell = oCurrentRow.insertCell(0);
+            oCurrentCell.innerHTML = "<tr><td colspan=2><INPUT TYPE='FILE' NAME='filename" + rowIndex + "' size=25></td></tr>";
+        }
+
+        //첨부파일 삭제
+        function deleteFile(form){
+            if(rowIndex < 2){
+                return false;
+            }else{
+                rowIndex--;
+                var getTable = document.getElementById("insertTable");
+                getTable.deleteRow(rowIndex);
+            }
+        }
 
     button(onclick='movepage("/board")') 글 목록으로 돌아가기
 
@@ -14,6 +38,12 @@ block content
         p 내용
         textarea(name='subtitle')
         p 파일
-        input(type='file', name='upl')
+        table(id='insertTable', border=0, cellpadding=0, cellspacing=0)
+            td(valign=bottom)
+                input(type='file', maxlength='100', name='filename1', size=25)
+            td(width=100)
+                button(type='button', onclick='addFile(this.form)') +
+                button(type='button', onclick='deleteFile(this.form)') -
+
         p
         input(type='submit', value='전송')
